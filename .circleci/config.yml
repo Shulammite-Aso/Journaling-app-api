@@ -5,3 +5,7 @@ workflows:
   node-tests:
     jobs:
       - node/test
+steps:
+  - save_cache:
+            keys:
+              - myapp-{{ .Environment.CACHE_VERSION }}-{{checksum "yarn.lock" }}
