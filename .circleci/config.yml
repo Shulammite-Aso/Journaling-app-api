@@ -6,10 +6,13 @@ workflows:
     jobs:
       - node/test
 steps:
+  - restore_cache:
+      keys:
+        # when lock file changes, use increasingly general patterns to restore cache
+        - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+        - yarn-packages-v1-{{ .Branch }}-
+        - yarn-packages-v1-
   - save_cache:
-            keys:
-              - myapp-{{ .Environment.CACHE_VERSION }}-{{checksum "yarn.lock" }}
-
-  - save_cache:
-            keys:
-              - myapp-{{ .Environment.CACHE_VERSION }}-{{checksum "yarn.lock" }}
+      paths:
+        - ~/.cache/yarn
+      key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
