@@ -1,6 +1,8 @@
 tasks:
   - init: yarn install
     command: yarn dev
+  - name: run docker-compose to create mongo container
+    init: docker-compose -f docker-compose.yaml up
 ports:
   - port: 8080
     onOpen: open-preview
