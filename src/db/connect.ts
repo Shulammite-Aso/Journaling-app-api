@@ -5,6 +5,8 @@ import log from "../logger";
 function connect() {
   const dbUri = config.get("dbUri") as string;
 
+  mongoose.set('useCreateIndex', true);
+
   return mongoose
     .connect(dbUri, {
       useNewUrlParser: true,

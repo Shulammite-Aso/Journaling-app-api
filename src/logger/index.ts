@@ -1,6 +1,7 @@
 import logger from "pino";
 import dayjs from "dayjs";
 
+// A logging service to use instead of console.log
 const log = logger({
   prettyPrint: true,
   base: {

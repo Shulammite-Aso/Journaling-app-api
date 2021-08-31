@@ -1,5 +1,5 @@
 export default {
     port: 8080,
     host: "localhost",
-    dbUri: "mongodb://localhost:27017/journalDB"
+    dbUri: "mongodb://admin:password@localhost:27017/journalDB"
 }
