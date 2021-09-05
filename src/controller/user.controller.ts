@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import { omit } from "lodash";
-import User from "../model/user.model";
+import { createUser } from "../service/user.service";
 import log from "../logger";
 
-export async function handleUser(req: Request, res: Response) {
+export async function handleUserSignup(req: Request, res: Response) {
    try {
-    const user = await User.create(req.body); 
+      const user = await createUser(req.body); 
     return res.send(omit(user.toJSON(), "password"));
    } catch (e) {
     log.error(e);
@@ -13,3 +13,4 @@ export async function handleUser(req: Request, res: Response) {
    }
     
 }
+

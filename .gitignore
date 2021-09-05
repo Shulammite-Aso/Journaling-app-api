@@ -3,6 +3,9 @@
 /.pnp
 .pnp.js
 
+# config
+/config/detault.ts
+
 # testing
 /coverage
 

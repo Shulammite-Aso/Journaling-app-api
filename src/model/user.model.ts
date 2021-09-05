@@ -1,4 +1,13 @@
 import mongoose from "mongoose";
+import bcrypt from "bcrypt";
+
+export interface UserDocument extends mongoose.Document {
+  email: string;
+  name: string;
+  password: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
 const userSchema = new mongoose.Schema(
     {
@@ -9,6 +18,19 @@ const userSchema = new mongoose.Schema(
     { timestamps: true }
   );
 
-  const User = mongoose.model("User", userSchema);
+  userSchema.pre("save", async function (next: mongoose.HookNextFunction) {
+    let user = this as UserDocument;
+
+    if(user.isModified("password")) {
+      const salt = await bcrypt.genSalt();
+      const hashedPassword = await bcrypt.hashSync(user.password, salt);
+      user.password = hashedPassword;
+      return next();
+    }
+
+    return next();
+  })
+
+  const User = mongoose.model<UserDocument>("User", userSchema);
 
   export default User;
