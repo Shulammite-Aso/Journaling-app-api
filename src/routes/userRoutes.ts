@@ -1,7 +1,8 @@
 import express from "express";
 import { handleUserSignup } from "../controller/user.controller";
-import { handleCreateUserSession } from "../controller/userSession.controller";
+import { handleCreateUserSession, invalidateUserSessionHandler } from "../controller/userSession.controller";
 import validate from "../middleware/validate";
+import requiresUser from "../middleware/requireUser";
 import { createUserSchema, createUserSessionSchema } from "../schema/userSchema";
 
 const router = express.Router();
@@ -11,9 +12,10 @@ const router = express.Router();
      router.post("/signup", validate(createUserSchema), handleUserSignup);
 
     // LOGIN ENDPOINT
-    router.post("/login", validate(createUserSessionSchema), handleCreateUserSession);
+    router.post("/sessions", validate(createUserSessionSchema), handleCreateUserSession);
 
-// LOGOUT ENDPOINT
+    // LOGOUT ENDPOINT
+    router.delete("/api/sessions", requiresUser, invalidateUserSessionHandler);
 
 // USER ENDPOINT
 
