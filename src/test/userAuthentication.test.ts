@@ -4,7 +4,7 @@ import config from "config";
 import express, { Request, Response } from "express";
 import chaiHttp = require('chai-http')
 import { request, expect } from 'chai';
-import User from "../src/model/user.model"
+import User from "../model/user.model"
 
 chai.use(chaiHttp);
 
