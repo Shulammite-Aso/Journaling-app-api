@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: journal-api-deployment
+spec:
+  selector:
+    matchLabels:
+      app: journal-api
+      tier: backend
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: journal-api
+        tier: backend
+    spec:
+      containers:
+        - image: shulaa/journal-api:v1
+          name: journal-api
+          ports:
+            - containerPort: 5000
+              name: http-port
