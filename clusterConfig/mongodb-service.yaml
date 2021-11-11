@@ -1,11 +1,12 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: mongodb # Recall this is the same name we specified in our db url
-spec:
-  ports:
-    - port: 27017
-      protocol: TCP
-  selector:
-    app: mongodb
-  type: ClusterIP
+apiVersion: v1 
+kind: Service 
+metadata: 
+ labels: 
+   name: mongodb 
+ name: mongodb 
+spec: 
+ ports: 
+   - port: 27017 
+     targetPort: 27017 
+ selector: 
+name: mongodb 
