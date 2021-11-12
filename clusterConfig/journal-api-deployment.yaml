@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: journal-api 
-        image: gcr.io/poetic-now-331405/journal-api:v1 
+        image: gcr.io/poetic-now-331405/journal-api@sha256:f5cae0bf86825015762c99344894a2e28bc8ed8010793bce7341f313a9d36b35 
         ports:
         - containerPort: 8080

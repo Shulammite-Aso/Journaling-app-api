@@ -19,7 +19,7 @@ app.use('/api/v1/', userRoutes);
 
 app.get("/healthcheck", (req: Request, res: Response) => res.send("api working fine!"));
 
-app.listen(port, host, () => {
-  log.info(`Server listing at http://${host}:${port}`);
+app.listen(port, () => {
+  log.info(`Server listing at: http://${host}:${port}`);
   connect();
 });
