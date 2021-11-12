@@ -12,7 +12,7 @@ spec:
   template: 
     metadata: 
       labels: 
-        name: journal-api 
+        app: journal-api 
     spec: 
       containers: 
       - image: gcr.io/poetic-now-331405/journal-api:v1 
