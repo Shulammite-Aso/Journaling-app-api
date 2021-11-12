@@ -6,17 +6,17 @@ spec:
   replicas: 1 
   selector:
     matchLabels:
-      app: mongodb 
+      app: mongo 
   template: 
     metadata: 
       labels: 
-        app: mongodb 
+        app: mongo 
     spec: 
       containers: 
       - image: mongo 
-        name: mongodb 
+        name: mongo 
         ports: 
-        - name: mongodb 
+        - name: mongo 
           containerPort: 27017 
           hostPort: 27017 
         volumeMounts: 
