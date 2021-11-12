@@ -19,4 +19,4 @@ spec:
         name: journal-api 
         ports: 
         - name: http-server 
-  containerPort: 5000 
+        containerPort: 5000 
