@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon --config nodemon.json src/app.ts",
-    "start": "ts-node dist/app.js",
+    "start": "ts-node dist/src/app.js",
     "build": "tsc -p .",
     "db": "docker-compose -f docker-compose.yaml up",
     "test": "mocha -r ts-node/register 'src/test/**/*.ts'",
