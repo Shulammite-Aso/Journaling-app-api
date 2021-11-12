@@ -13,10 +13,9 @@ spec:
     metadata: 
       labels: 
         app: journal-api 
-    spec: 
-      containers: 
-      - image: gcr.io/poetic-now-331405/journal-api:v1 
-        name: journal-api 
-        ports: 
-        - name: http-server 
-        containerPort: 5000 
+    spec:
+      containers:
+      - name: journal-api 
+        image: gcr.io/poetic-now-331405/journal-api:v1 
+        ports:
+        - containerPort: 5000
