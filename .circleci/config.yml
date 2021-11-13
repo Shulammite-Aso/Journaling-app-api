@@ -18,6 +18,14 @@ jobs:
                 command: npm install
           cache-key: package.json
           use-strict-cache: true
+  test:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - run:
+          name: Test
+          command: npm run test
   Build-Push-Image-Docker:
     description: Build and push image to Google Container Registry
     machine: true
@@ -45,9 +53,12 @@ workflows:
   build_update_deploy:
     jobs:
       - build
-      - Build-Push-Image-Docker:
+      - test:
           requires:
             - build
+      - Build-Push-Image-Docker:
+          requires:
+            - test
       - deploy:
           requires:
             - Build-Push-Image-Docker
