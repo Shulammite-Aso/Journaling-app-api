@@ -1,0 +1,53 @@
+version: 2.1
+orbs:
+  node: circleci/node@3.0.0
+  gcp-gke: circleci/gcp-gke@0.1.0
+  gcr: circleci/gcp-gcr@0.0.2
+jobs:
+  build:
+    description: Install npm
+    machine: true
+    steps:
+      - checkout
+      - node/install
+      - node/install-npm
+      - node/with-cache:
+          steps:
+            - run:
+                name: Install application dependencies
+                command: npm install
+          cache-key: package.json
+          use-strict-cache: true
+  Build-Push-Image-Docker:
+    description: Build and push image to Google Container Registry
+    machine: true
+    steps:
+      - checkout
+      - gcr/gcr-auth
+      - gcr/build-image:
+          image: journal-api
+          tag: "v2"
+      - gcr/push-image:
+          image: journal-api
+          tag: "v2"
+    
+  deploy:
+    description: Deploy application to Google Kubernetes Engine
+    machine: true
+    steps:
+      - gcp-gke/install
+      - gcp-gke/init
+      - gcp-gke/rollout-image:
+          deployment: journal-app1
+          container: journal-api
+          image: gcr.io/poetic-now-331405/journal-api:v2
+workflows:
+  build_update_deploy:
+    jobs:
+      - build
+      - Build-Push-Image-Docker:
+          requires:
+            - build
+      - deploy:
+          requires:
+            - Build-Push-Image-Docker
