@@ -11,7 +11,7 @@ jobs:
       - checkout
       - node/install
       - node/install-npm
-      - node/with-cache:
+      - node/with_cache:
           steps:
             - run:
                 name: Install application dependencies
