@@ -1,6 +1,5 @@
 tasks:
   - init: yarn install
-    command: yarn db
 ports:
   - port: 8081
     onOpen: notify
