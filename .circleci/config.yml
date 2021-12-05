@@ -11,13 +11,8 @@ jobs:
       - checkout
       - node/install
       - node/install-npm
-      - node/with-cache:
-          steps:
-            - run:
-                name: Install application dependencies
-                command: npm install
-          cache-key: package.json
-          use-strict-cache: true
+      - node/run:
+          npm-run: install
   test:
     executor:
       name: node/default
