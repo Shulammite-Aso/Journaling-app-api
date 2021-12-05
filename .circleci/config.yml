@@ -11,7 +11,9 @@ jobs:
       - checkout
       - node/install
       - node/install-npm
-      - run: node
+      - run:
+          name: Dependencies
+          command: npm run install
   test:
     executor:
       name: node/default
